@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block contenido %}
+
+
+<p>
+  <img src="{{ articulo.imagen.url }}">
+</p>
+<p>
+  <strong>Titulo:</strong> {{object.titulo}}
+</p>
+<p>
+  <strong>Categoria:</strong> {{object.categoria}}
+</p>
+<p>
+  <strong>Fecha:</strong> {{object.fecha}}
+</p>
+<p>
+  <strong>Contenido:</strong> {{object.contenido}}
+</p>
+<p>
+  <strong>Autor:</strong> {{object.autor}}
+</p>
+
+<a href="{% url 'articulos' %}">Volver lista</a>
+
+{% endblock contenido %}

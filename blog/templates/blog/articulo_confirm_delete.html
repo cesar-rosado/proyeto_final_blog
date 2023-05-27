@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block contenido %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>¿Estas seguro deseas eliminar {{object.titulo}}?</p>
+    <input type="submit" value="Eliminar" />
+</form>
+
+<br>
+<a href="{% url 'articulos' %}">Volver lista</a>
+
+{% endblock contenido %}

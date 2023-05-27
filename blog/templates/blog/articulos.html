@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %} 
+
+{% block titulo %}
+<h1>Articulos de Blog</h1>
+{% endblock titulo %} 
+
+{% block contenido %}
+<section>
+    <a href="{% url 'crear_articulo' %}">Crear artículo</a>
+    
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="container mt-5">
+                    {% if object_list %}
+                    
+                    {% for articulo in object_list %}
+                    <br>
+                        {% if articulo.imagen %}
+                            <img src="{{ articulo.imagen.url }}">
+                        {% endif %}
+                        <p class="post-meta"> {{ articulo.titulo }}</p>
+                        <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
+                        <p class="post-meta"> {{ articulo.contenido }}</p>
+                            <a href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
+                            <a href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
+                            <a href="{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo</a>
+                        
+                </div>
+                    {% endfor %}
+
+                    {% else %}
+                        <h2>No existen artículos</h2>
+
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</section>     
+{% endblock contenido %}

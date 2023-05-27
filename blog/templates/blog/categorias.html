@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %} 
+
+{% block titulo %}
+<h1>Lista de categorias</h1>
+{% endblock titulo %} 
+
+{% block contenido %}
+<section>
+  <div>
+    <a href="{% url 'crear_categoria' %}">Crear categoria</a>
+    <br />
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% for categoria in object_list %}
+        <tr>
+          <td>{{ categoria.id }}</td>
+          <td>{{ categoria.nombre }}</td>
+          <td>
+            <a href="{% url 'ver_categoria' categoria.id %}">Ver</a>
+          </td>
+          <td>
+            <a href="{% url 'editar_categoria' categoria.id %}">Editar</a>
+          </td>
+          <td>
+            <a href="{% url 'eliminar_categoria' categoria.id %}">
+              <i class="bi bi-trash"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock contenido %}

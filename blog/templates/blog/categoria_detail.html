@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block contenido %}
+
+
+<p>
+  <strong>Nombre:</strong> {{object.nombre}}
+</p>
+
+<a href="{% url 'categorias' %}">Volver lista</a>
+
+{% endblock contenido %}
