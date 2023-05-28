@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.urls import reverse, reverse_lazy
 
 from blog.models import Categoria, Articulo
+from proyecto_blog  import settings
 # Create your views here.
 
 ####VISTAS POR CLASE PARA MODELO CATEGORIA
@@ -43,6 +44,11 @@ class ArticuloCreateView(CreateView):
     def form_valid(self, form):
         form.instance.autor = self.request.user
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ruta_imagen'] = settings.MEDIA_URL + 'img_articulos/'
+        return context
 
 class ArticuloDetailView(DetailView):
     model = Articulo
@@ -56,6 +62,11 @@ class ArticuloUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.autor = self.request.user
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ruta_imagen'] = settings.MEDIA_URL + 'img_articulos/'
+        return context
 
 class ArticuloDeleteView(DeleteView):
     model = Articulo
