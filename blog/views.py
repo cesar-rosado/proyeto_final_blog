@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
@@ -7,25 +8,25 @@ from proyecto_blog  import settings
 # Create your views here.
 
 ####VISTAS POR CLASE PARA MODELO CATEGORIA
-class CategoriaListView(ListView):
+class CategoriaListView(LoginRequiredMixin, ListView):
     model = Categoria
     template_name = 'blog/categorias.html'
 
-class CategoriaCreateView(CreateView):
+class CategoriaCreateView(LoginRequiredMixin, CreateView):
     model = Categoria
     fields = ('nombre',)
     success_url = reverse_lazy('categorias')
 
-class CategoriaDetailView(DetailView):
+class CategoriaDetailView(LoginRequiredMixin, DetailView):
     model = Categoria
     success_url = reverse_lazy('categorias')
 
-class CategoriaUpdateView(UpdateView):
+class CategoriaUpdateView(LoginRequiredMixin, UpdateView):
     model = Categoria
     fields = ('nombre',)
     success_url = reverse_lazy('categorias')
 
-class CategoriaDeleteView(DeleteView):
+class CategoriaDeleteView(LoginRequiredMixin, DeleteView):
     model = Categoria
     success_url = reverse_lazy('categorias')
 
@@ -36,7 +37,7 @@ class ArticuloListView(ListView):
     model = Articulo
     template_name = 'blog/articulos.html'
 
-class ArticuloCreateView(CreateView):
+class ArticuloCreateView(LoginRequiredMixin, CreateView):
     model = Articulo
     fields = ('titulo', 'categoria', 'fecha', 'contenido', 'autor', 'imagen')
     success_url = reverse_lazy('articulos')
@@ -54,7 +55,7 @@ class ArticuloDetailView(DetailView):
     model = Articulo
     success_url = reverse_lazy('articulo')
 
-class ArticuloUpdateView(UpdateView):
+class ArticuloUpdateView(LoginRequiredMixin, UpdateView):
     model = Articulo
     fields = ('titulo', 'categoria', 'fecha', 'contenido', 'autor', 'imagen')
     success_url = reverse_lazy('articulos')
@@ -68,6 +69,6 @@ class ArticuloUpdateView(UpdateView):
         context['ruta_imagen'] = settings.MEDIA_URL + 'img_articulos/'
         return context
 
-class ArticuloDeleteView(DeleteView):
+class ArticuloDeleteView(LoginRequiredMixin, DeleteView):
     model = Articulo
     success_url = reverse_lazy('articulos')
