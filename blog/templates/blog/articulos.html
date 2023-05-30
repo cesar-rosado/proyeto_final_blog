@@ -6,8 +6,7 @@
 
 {% block contenido %}
 <section>
-    <a href="{% url 'crear_articulo' %}">Crear artículo</a>
-    
+    <a class="btn btn-outline-dark" href="{% url 'crear_articulo' %}">Crear artículo</a>
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
@@ -17,21 +16,20 @@
                     {% for articulo in object_list %}
                     <br>
                         {% if articulo.imagen %}
-                        <img src="{{ ruta_imagen }}{{ object.imagen.url }}" alt="Imagen del artículo">
+                            <img src="{{ ruta_imagen }}{{ object.imagen.url }}" alt="Imagen del artículo">
                         {% endif %}
                         <p class="post-meta"> {{ articulo.titulo }}</p>
                         <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
                         <p class="post-meta"> {{ articulo.contenido }}</p>
-                            <a href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
-                            <a href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
-                            <a href="{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo</a>
-                        
-                </div>
-                    {% endfor %}
+                            <a class="btn btn-outline-dark" href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
+                            <a class="btn btn-outline-dark" href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
+                            <a class="btn btn-outline-dark" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo</a>
 
+                </div>
+                    {% endfor %}      
                     {% else %}
                         <h2>No existen artículos</h2>
-                    {% endif %}
+                    {% endif %}   
             </div>
         </div>
     </div>
