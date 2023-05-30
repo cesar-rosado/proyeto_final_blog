@@ -4,7 +4,10 @@
 
 
 <p>
-  <img src="{{ articulo.imagen.url }}">
+  {% if object.imagen and object.imagen.url %}
+    <img src="{{ object.imagen.url }}">
+  {%endif%}
+  
 </p>
 <p>
   <strong>Titulo:</strong> {{object.titulo}}
@@ -19,7 +22,7 @@
   <strong>Contenido:</strong> {{object.contenido}}
 </p>
 <p>
-  <strong>Autor:</strong> {{object.autor}}
+  <strong>Autor:</strong> {{object.autor}} 
 </p>
 
 <a href="{% url 'articulos' %}">Volver lista</a>

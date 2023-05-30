@@ -21,6 +21,7 @@ class CategoriaDetailView(LoginRequiredMixin, DetailView):
     model = Categoria
     success_url = reverse_lazy('categorias')
 
+
 class CategoriaUpdateView(LoginRequiredMixin, UpdateView):
     model = Categoria
     fields = ('nombre',)

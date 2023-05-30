@@ -51,6 +51,17 @@ def login_view(request):
         context={'form': form},
     )
 
+class CustomLogoutView(LogoutView):
+   template_name = 'usuarios/logout.html'
+   
+class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
+   form_class = UpdateForm
+   success_url = reverse_lazy('inicio')
+   template_name = 'usuarios/formulario_usuario.html'
+
+   def get_object(self, queryset=None):
+       return self.request.user
+
 def agregar_avatar(request):
   if request.method == "POST":
       formulario = AvatarForm(request.POST, request.FILES) # Aquí me llega toda la info del formulario html
@@ -63,20 +74,9 @@ def agregar_avatar(request):
           return redirect(url_exitosa)
   else:  # GET
       formulario = AvatarForm()
+      
   return render(
       request=request,
       template_name="usuarios/avatar.html",
       context={'form': formulario},
   )
-
-class CustomLogoutView(LogoutView):
-   template_name = 'usuarios/logout.html'
-   
-class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
-   form_class = UpdateForm
-   success_url = reverse_lazy('inicio')
-   template_name = 'usuario/formulario_usuario.html'
-
-   def get_object(self, queryset=None):
-       return self.request.user
-

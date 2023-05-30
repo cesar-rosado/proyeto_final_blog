@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block contenido %}
-<h3>Subir tu Avatar</h3>
+<h2>Subir tu Avatar</h2>
 <form method="post" enctype="multipart/form-data">
  {% csrf_token %}
  {{ form.as_p }}
