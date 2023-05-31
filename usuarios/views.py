@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
 from django.views.generic import UpdateView
 
+from usuarios.models import Avatar
 from usuarios.forms import RegisterForm, UpdateForm, AvatarForm
 # Create your views here.
 
@@ -67,16 +68,20 @@ def agregar_avatar(request):
       formulario = AvatarForm(request.POST, request.FILES) # Aquí me llega toda la info del formulario html
 
       if formulario.is_valid():
-          avatar = formulario.save()
-          avatar.user = request.user
-          avatar.save()
+          avatar_anterior = Avatar.objects.filter(user=request.user)
+          if (len(avatar_anterior) > 0):
+                avatar_anterior.delete()
+          avatar_nuevo = Avatar(user=request.user, imagen=formulario.cleaned_data["imagen"])
+          avatar_nuevo.save()
           url_exitosa = reverse('inicio')
           return redirect(url_exitosa)
   else:  # GET
       formulario = AvatarForm()
+  
+  avatar = Avatar.objects.get(user=request.user) if Avatar.objects.filter(user=request.user).exists() else None
       
   return render(
       request=request,
       template_name="usuarios/avatar.html",
-      context={'form': formulario},
+      context={'form': formulario, 'avatar':avatar},
   )
