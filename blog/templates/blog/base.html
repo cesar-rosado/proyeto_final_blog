@@ -39,11 +39,15 @@
                                     <span>{{ user.username }}</span>
                                 </div>
                                 <div>
-                                    {%if user.avatar.image.url%}
-                                        <img src="{{ user.avatar.image.url}}" style="with: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
-                                    {%else%}
-                                    <img src="{% static 'avatares/default.png' %}" style="with: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
-                                    {%endif%}
+                                    {% if user.avatar %}
+                                        {% if user.avatar.imagen %}
+                                            <img src="{{ user.avatar.imagen.url }}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                                        {% else %}
+                                            <img src="{% static 'avatares/default.png' %}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                                        {% endif %}
+                                    {% else %}
+                                        <img src="{% static 'avatares/default.png' %}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                                    {% endif %}
                                 </div>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
