@@ -1,4 +1,5 @@
 # Proyecto Web Django
++ Falta corregir imagenes y realizar test
 
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta conetenedora madre
