@@ -7,7 +7,9 @@
 {% block contenido %}
 <section>
   <div>
-    <a href="{% url 'crear_categoria' %}">Crear categoria</a>
+    {%if user.is_authenticated%}
+    <a class="btn btn-outline-dark" href="{% url 'crear_categoria' %}">Crear categoria</a>
+    {%endif%}
     <br />
 
     <table class="table">
@@ -24,15 +26,17 @@
           <td>{{ categoria.id }}</td>
           <td>{{ categoria.nombre }}</td>
           <td>
-            <a href="{% url 'ver_categoria' categoria.id %}">Ver</a>
+            <a class="btn btn-outline-dark" href="{% url 'ver_categoria' categoria.id %}">Ver</a>
+          </td>
+          {%if user.is_authenticated%}
+          <td>
+            <a class="btn btn-outline-dark" href="{% url 'editar_categoria' categoria.id %}">Editar</a>
           </td>
           <td>
-            <a href="{% url 'editar_categoria' categoria.id %}">Editar</a>
-          </td>
-          <td>
-            <a href="{% url 'eliminar_categoria' categoria.id %}">
+            <a class="btn btn-outline-dark" href="{% url 'eliminar_categoria' categoria.id %}">
               <i class="bi bi-trash"></i>
             </a>
+          {%endif%}  
           </td>
         </tr>
         {% endfor %}

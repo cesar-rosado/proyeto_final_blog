@@ -6,7 +6,9 @@
 
 {% block contenido %}
 <section>
+    {%if user.is_authenticated%}
     <a class="btn btn-outline-dark" href="{% url 'crear_articulo' %}">Crear artículo</a>
+    {%endif%}
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
@@ -22,9 +24,10 @@
                         <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
                         <p class="post-meta"> {{ articulo.contenido }}</p>
                             <a class="btn btn-outline-dark" href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
-                            <a class="btn btn-outline-dark" href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
-                            <a class="btn btn-outline-dark" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo</a>
-
+                            {% if user == articulo.autor %}
+                                <a class="btn btn-outline-dark" href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
+                                <a class="btn btn-outline-dark" href= "{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo </a>
+                            {% endif %}    
                 </div>
                     {% endfor %}      
                     {% else %}

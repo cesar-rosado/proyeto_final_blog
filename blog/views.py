@@ -8,7 +8,7 @@ from proyecto_blog  import settings
 # Create your views here.
 
 ####VISTAS POR CLASE PARA MODELO CATEGORIA
-class CategoriaListView(LoginRequiredMixin, ListView):
+class CategoriaListView(ListView):
     model = Categoria
     template_name = 'blog/categorias.html'
 
@@ -17,7 +17,7 @@ class CategoriaCreateView(LoginRequiredMixin, CreateView):
     fields = ('nombre',)
     success_url = reverse_lazy('categorias')
 
-class CategoriaDetailView(LoginRequiredMixin, DetailView):
+class CategoriaDetailView(DetailView):
     model = Categoria
     success_url = reverse_lazy('categorias')
 
