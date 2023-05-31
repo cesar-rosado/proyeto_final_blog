@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+
+{% block titulo %}
+<div class="w3-container w3-indigo w3-round-large w3-padding-16 w3-center">
+    <h1>{{title}}</h1>
+</div>
+
+
+<div class="w3-container w3-round-large w3-padding-16 w3-margin-top w3-margin-bottom">
+    <div class="w3-card-4 w3-margin-top">
+        <header class="w3-container">
+            <h1>Acerca de mi:</h1>
+        </header>
+        <div class="w3-container">
+            
+            <h4>Mi nombre es César Rosado, soy  egresado de la Universidad Autonoma de Quintana Roo en la carrera Ingenieria en Redes, me inscribi al curso de programacion en Python para aprender las bases del lenguaje de programacion y asi poder implementarlas en el ambito de ciberseguridad.
+                Este proyecto final ha sido creado con los conocimientos adquiridos en curso de programacion Python de CoderHouse comision 40440.
+            </h4>
+        </div>
+</div>
+
+
+<!-- Botones -->
+<div class="w3-bar w3-padding-32 w3-center">
+    <a class="btn btn-outline-dark" href=" {% url 'inicio' %} ">Volver al inicio</button></a>
+</div>
+
+{% endblock titulo %}

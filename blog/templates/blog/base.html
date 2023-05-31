@@ -27,7 +27,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'categorias' %}">Categorias</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'articulos' %}">Articulos de  Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                         
                         
                        
@@ -37,6 +37,13 @@
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div style="display: inline-flex;">
                                     <span>{{ user.username }}</span>
+                                </div>
+                                <div>
+                                    {%if user.avatar.image.url%}
+                                        <img src="{{ user.avatar.image.url}}" style="with: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                                    {%else%}
+                                    <img src="{% static 'avatares/default.png' %}" style="with: 30px; height: 30px; border-radius: 50%; margin-right: 5px;">
+                                    {%endif%}
                                 </div>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
