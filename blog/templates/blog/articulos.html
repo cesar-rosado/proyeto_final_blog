@@ -18,7 +18,7 @@
                     {% for articulo in object_list %}
                     <br>
                         {% if articulo.imagen %}
-                            <img src="{{ articulo.imagen.url }}">
+                            <img src="{{ articulo.imagen.url }}" width="700" height="450">
                         {% endif %}
                         <p class="post-meta"> {{ articulo.titulo }}</p>
                         <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
