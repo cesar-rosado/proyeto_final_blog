@@ -7,7 +7,7 @@ venv/
 .cache/
 .pytest_cache/
 pygsheets.egg-info/
-.pytest_cache/
+#media/*
 
 # Other
 .DS_Store
