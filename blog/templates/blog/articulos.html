@@ -20,8 +20,8 @@
                         {% if articulo.imagen %}
                             <img src="{{ articulo.imagen.url }}" width="700" height="450">
                         {% endif %}
-                        <p class="post-meta">{{ articulo.titulo }}</p>
-                        <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
+                        <p class="post-meta"> <strong>{{ articulo.titulo }}  </strong></p>
+                        <p class="post-meta"> <strong>Escrito por:   {{ articulo.autor }} el {{ articulo.fecha }}</strong></p>
                         <p class="post-meta">{{ articulo.contenido }}</p>
                         <a class="btn btn-outline-dark" href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
                         {% if user == articulo.autor %}

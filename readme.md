@@ -1,5 +1,5 @@
-# Proyecto Web Django
-+ Falta test y el video
+# Proyecto Final CoderHouse Comision 40440
++ Blog de articulos
 
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta conetenedora madre
@@ -28,3 +28,14 @@ python manage.py createsuperuser
 ```
 127.0.0.1/admin
 ```
+
+## Link para demostrativo
++ https://www.loom.com/share/5c2a617ec5dc4cfbb84732d66be1e1e9
+
+## Usuarios
++ Ismael
++ jacqueline
++ fall.guy
+
+## Contraseña
++Temporal**
