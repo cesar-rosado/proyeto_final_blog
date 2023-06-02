@@ -1,38 +1,34 @@
-{% extends "blog/base.html" %} 
+{% extends "blog/base.html" %}
 
 {% block titulo %}
-<h1>Articulos de Blog</h1>
-{% endblock titulo %} 
+<h1>Bienvenido {{ user.first_name }}</h1>
+<img src="{{ user.avatar.image.url }}" />
+{% endblock titulo %}
 
 {% block contenido %}
 <section>
-    {%if user.is_authenticated%}
-    <a class="btn btn-outline-dark" href="{% url 'crear_articulo' %}">Crear artículo</a>
-    {%endif%}
-                    {% if object_list %}
-                    
-                    {% for articulo in object_list %}
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 mx-auto">
+    {% if object_list %}
+        <div class="row justify-content-center">
+            <div class="col-md-8 mx-auto">
+                <br>
+                {% for articulo in object_list|slice:"3" %}
+                    {% if articulo.imagen %}
+                        <img src="{{ articulo.imagen.url }}" width="700" height="450">
+                    {% endif %}
+                    <p class="post-meta">{{ articulo.titulo }}</p>
+                    <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
+                    <p class="post-meta">{{ articulo.contenido }}</p>
+                    <a class="btn btn-outline-dark" href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
+                    {% if user == articulo.autor %}
+                        <a class="btn btn-outline-dark" href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
+                        <a class="btn btn-outline-dark" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo</a>
+                    {% endif %}
                     <br>
-                        {% if articulo.imagen %}
-                            <img src="{{ articulo.imagen.url }}" width="700" height="450">
-                        {% endif %}
-                        <p class="post-meta"> {{ articulo.titulo }}</p>
-                        <p class="post-meta">Escrito por {{ articulo.autor }} el {{ articulo.fecha }}</p>
-                        <p class="post-meta"> {{ articulo.contenido }}</p>
-                            <a class="btn btn-outline-dark" href="{% url 'ver_articulo' articulo.id %}">Leer más</a>
-                            {% if user == articulo.autor %}
-                                <a class="btn btn-outline-dark" href="{% url 'editar_articulo' articulo.id %}">Editar artículo</a>
-                                <a class="btn btn-outline-dark" href= "{% url 'eliminar_articulo' articulo.id %}">Eliminar artículo </a>
-                            {% endif %}    
-                </div>
-                    {% endfor %}      
-                    {% else %}
-                        <h2>No existen artículos</h2>
-                    {% endif %}   
+                {% endfor %}
             </div>
         </div>
-    </div>
-</section>     
+    {% else %}
+        <h2>No existen artículos</h2>
+    {% endif %}
+</section>
 {% endblock contenido %}
